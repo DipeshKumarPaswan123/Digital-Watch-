@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Clock with Date</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="DigitalWatch.css">
+</head>
+<body>
+    <div class="container">
+        <div class="timeOptions">
+            <i class="fas fa-clock" data-title="Time"></i>
+            <i class="fas fa-stopwatch" data-title="StopWatch"></i>
+            <i class="far fa-clock" data-title="CountDown"></i>
+        </div>
+        <p id="clock"></p>
+        <p id="date"></p>
+    </div>
+
+    <script>
+        const updateDateTime = () => {
+            // Get current time
+            const now = new Date();
+            const time = now.toLocaleTimeString();
+
+            // Get current date in desired format
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const date = now.toLocaleDateString(undefined, options);
+
+            // Update DOM elements
+            document.getElementById("clock").innerText = time;
+            document.getElementById("date").innerText = date;
+        };
+
+        // Update every second
+        setInterval(updateDateTime, 1000);
+        updateDateTime(); // Run immediately on load
+    </script>
+</body>
+</html>
